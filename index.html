@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>悄悄话</title>
+<style>
+ *{margin:0;padding:0;box-sizing:border-box;}
+ body{
+   min-height:100vh;
+   background: url("bg.jpg") no-repeat center center;
+   background-size: cover;
+   background-attachment: fixed;
+   font-family:"Microsoft Yahei",sans-serif;
+   color:#ffffff;
+   padding:80px 30px;
+   text-shadow: 2px 2px 7px rgba(0,0,0,0.7);
+ }
+ .container{
+   max-width:660px;
+   margin:140px auto 0;
+ }
+ .text-item{
+   font-size:24px;
+   line-height:2.5;
+   margin-bottom:35px;
+   opacity:0;
+   transform: translateY(26px);
+   transition: opacity 2.4s ease, transform 2.4s ease;
+ }
+ .text-item.show{
+   opacity:1;
+   transform: translateY(0);
+ }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="text-item">点进来的都是乐乐。</div>
+</div>
+<audio id="bgm" loop preload="auto">
+   <source src="specialperson.mp3" type="audio/mpeg">
+ <script>
+ const list = document.querySelectorAll('.text-item');
+ const delay = 3000;
+ list.forEach((el,i)=>{
+   setTimeout(()=>{
+     el.classList.add('show');
+   }, i*delay);
+ })
+ const audio = document.getElementById('bgm');
+ document.body.addEventListener('click',()=>{
+   audio.play();
+ },{once:true})
+</script>
+</body>
+</html>
